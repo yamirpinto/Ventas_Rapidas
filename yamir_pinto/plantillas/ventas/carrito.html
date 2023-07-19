@@ -1,0 +1,50 @@
+{% extends 'padre/base.html' %}
+{% load static %}
+
+{% block titulo %}
+{{ titulo }}
+{% endblock %}
+{% block css %}
+<link href="{% static 'dist/css/carrito.css' %}" rel="stylesheet">
+{% endblock %}
+{% block contenido %}
+<main class="container">
+  <div class="container">
+    <h1>Carrito de Compras</h1>
+    {% if detalles %}
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Precio Unitario</th>
+          <th>Cantidad</th>
+          <th>Subtotal</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for detalle in detalles %}
+        <tr>
+          <td>{{ detalle.producto.nombre }}</td>
+          <td>{{ detalle.producto.precio }}</td>
+          <td>{{ detalle.cantidad }}</td>
+          <td>{{ detalle.subtotal }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="3" class="text-end">Total:</td>
+          <td>{{ total }}</td>
+        </tr>
+      </tfoot>
+    </table>
+    <form method="POST" action="{% url 'ventas:realizar_compra' %}">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-primary">Realizar Compra</button>
+    </form>
+    {% else %}
+    <p>No hay productos en el carrito.</p>
+    {% endif %}
+  </div>
+</main>
+{% endblock %}

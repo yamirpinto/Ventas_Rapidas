@@ -1,0 +1,29 @@
+{% load static %}
+{% block css%}
+<link href="{% static 'dist/css/navbar.css' %}" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+{% endblock %}
+<div class="top-bar">
+    <span class="title navbar-title">
+        {% block titulo %}
+        {{ titulo }}
+        {% endblock %}
+    </span>
+    <span id="menu-btn" style="font-size:30px;cursor:pointer; display: none;" onclick="openNav()">&#9776; Menú</span>
+</div>
+<div id="mySidenav" class="sidenav">
+    <a href="{% url 'mostrar_inicio' %}"><i class="fas fa-home"></i> Inicio</a>
+    <a href="{% url 'ventas:mostrar_productos' %}"><i class="fas fa-film"></i> Productos</a>
+    {% if user.is_authenticated == True %}
+    <a href="{% url 'ventas:ver_carrito' %}"><i class="fas fa-shopping-cart"></i> Carro de compras</a>
+    <a href="{% url 'autenticacion:logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    {% endif%}
+    {% if user.is_authenticated == False %}
+    <a href="{% url 'autenticacion:registro' %}"><i class="fas fa-user-plus"></i> Registro</a>
+    <a href="{% url 'autenticacion:login' %}"><i class="fas fa-sign-in-alt"></i> Login</a>
+    {% endif%}
+</div>
+
+{% block js%}
+<script src="{% static 'dist/js/script_navbar.js'%}"></script>
+{% endblock %}

@@ -1,0 +1,9 @@
+body {
+    background: 
+    linear-gradient(to right, #2c2a89 10%, #960f75 100%), 
+    linear-gradient(to bottom right, #2c2a89 70%, #050505); 
+    background-clip: text;
+    color: transparent;
+    transition: margin-left .5s;
+    padding: 20px;
+}

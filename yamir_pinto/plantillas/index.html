@@ -1,0 +1,15 @@
+{% extends 'padre/base.html' %}
+{% load static %}
+
+{% block titulo %}
+{{ titulo }}
+{% endblock %}
+{% block css %}
+<link href="{% static 'dist/css/index.css' %}" rel="stylesheet">
+{% endblock %}
+{% block contenido %}
+  <div class="img-container">
+    <img src="https://static.wikia.nocookie.net/e68ad398-696b-494c-b7d9-8bd0d0daa88a" alt="Marvel">
+  </div>
+{% endblock %}
+

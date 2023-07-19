@@ -1,0 +1,14 @@
+{% extends 'padre/base.html' %}
+{% load static %}
+
+{% block titulo %}
+{{ titulo }}
+{% endblock %}
+{% block contenido %}
+<h1> Agregar nuevo producto </h1>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ formulario }}
+    <button type="submit" role="submit">Guardar</button>
+</form>
+{% endblock %}

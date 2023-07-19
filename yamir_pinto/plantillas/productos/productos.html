@@ -1,0 +1,30 @@
+{% extends 'padre/base.html' %}
+{% load static %}
+
+{% block titulo %}
+{{ titulo }}
+{% endblock %}
+{% block css %}
+<link href="{% static 'dist/css/productos.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block contenido %}
+    
+    <div class="main-container">
+        <div class="card-container">
+            {% for producto in productos %}
+                <div class="product-card">
+                    <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}" class="product-image"/>
+                    <div class="product-info">
+                        <h1>{{ producto.nombre }}</h1>
+                        <p>{{ producto.precio }}
+                            Cantidad : {{ producto.cantidad_stock }}
+                        </p>
+                        <a href="{% url 'ventas:mostrar_producto' producto.pk %}" class="product-button">Ver Producto</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock contenido %}

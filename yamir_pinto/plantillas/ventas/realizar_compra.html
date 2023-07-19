@@ -1,0 +1,43 @@
+{% extends 'padre/base.html' %}
+{% load static %}
+
+{% block titulo %}
+{{ titulo }}
+{% endblock %}
+{% block contenido %}
+<main class="container">
+  <div class="container">
+    <h1>Confirmar Compra</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Precio Unitario</th>
+          <th>Cantidad</th>
+          <th>Subtotal</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for detalle in detalles %}
+        <tr>
+          <td>{{ detalle.producto.nombre }}</td>
+          <td>{{ detalle.producto.precio }}</td>
+          <td>{{ detalle.cantidad }}</td>
+          <td>{{ detalle.producto.precio * detalle.cantidad }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="3" class="text-end">Total:</td>
+          <td>{{ total }}</td>
+        </tr>
+      </tfoot>
+    </table>
+    <form method="POST" action="{% url 'ventas:realizar_compra' %}">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-primary">Confirmar Compra</button>
+    </form>
+  </div>
+</main>
+{% endblock %}
